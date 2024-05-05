@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor Information</title>
+</head>
+<body>
+<h1>Professor Information</h1>
+<p>ID: <span th:text="${professor.user_id}"></span></p>
+<p>First Name: <span th:text="${professor.firstName}"></span></p>
+<p>Last Name: <span th:text="${professor.lastName}"></span></p>
+<p>Email: <span th:text="${professor.email}"></span></p>
+<p>Position: <span th:text="${professor.position}"></span></p>
+<p>Password: <span th:text="${professor.password}"></span></p>
+<p>Roles: <span th:text="${professor.roles}"></span></p>
+</body>
+</html>

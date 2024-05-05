@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+
+    <div>
+        <form method="POST" th:action="@{/auth/signup}" th:object="${user}">
+            <label for="username">Введите имя пользователя: </label>
+            <input type="text" th:field="*{username}" id="username"/>
+            <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
+            <br/>
+            <label for="email">Введите E-mail: </label>
+            <input type="text" th:field="*{email}" id="email"/>
+            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail Error
+            </div>
+            <br/>
+            <label for="password">Введите пароль: </label>
+            <input type="password" th:field="*{password}" id="password"/>
+            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+            <br/>
+            <input type="submit" value="Sign up"/>
+        </form>
+    </div>
+</body>
+</html>

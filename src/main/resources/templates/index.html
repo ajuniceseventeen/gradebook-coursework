@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+</head>
+<body>
+  its home page for student auth!
+
+<!--  <div>-->
+<!--      <h3><a th:href="@{/auth/signup}">Sign Up</a></h3>-->
+<!--  </div>-->
+
+  <a th:href="@{/students/info}">Профиль</a>
+
+  <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+  </form>
+
+</body>
+</html>

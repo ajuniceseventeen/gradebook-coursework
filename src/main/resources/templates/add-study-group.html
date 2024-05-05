@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Study Group</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <!--    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script></head>
+<body>
+<div class="container">
+    <h2>Add Study Group</h2>
+    <form method="post" th:action="@{/study-groups/add}">
+        <div class="form-group">
+            <label for="grade">Курс:</label>
+<!--            <input type="number" class="form-control" id="grade" name="grade" required min="1" max="6">-->
+            <select class="form-control" id="grade" name="grade" required>
+                <option value="" disabled selected>выберите курс</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Group</button>
+    </form>
+</div>
+</body>
+</html>

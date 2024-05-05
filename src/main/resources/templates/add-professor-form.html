@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Professor</title>
+</head>
+<body>
+<h2>Create Professor</h2>
+<form action="/admin/create-professor" method="post" th:object="${professor}">
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+    </div>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" th:field="*{email}" required>
+    </div>
+    <div>
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" th:field="*{position}" required>
+    </div>
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>

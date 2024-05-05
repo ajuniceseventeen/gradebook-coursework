@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Lesson</title>
+</head>
+<body>
+<h1>Create Lesson</h1>
+
+<form th:action="@{/createLesson}" method="post" th:object="${lesson}">
+    <input type="hidden" name="groupId" th:value="${groupId}"/>
+    <input type="hidden" name="professorId" th:value="${professorId}"/>
+    <input type="hidden" name="subjectId" th:value="${subjectId}"/>
+
+    <input type="text" th:field="*{topic}" placeholder="Lesson topic" required/>
+    <input type="date" th:field="*{lessonDate}" required/>
+    <button type="submit">Create Lesson</button>
+</form>
+
+</body>
+</html>

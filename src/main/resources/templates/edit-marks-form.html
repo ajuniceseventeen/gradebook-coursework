@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Marks</title>
+</head>
+<body>
+<h1 th:text="'Редактировать оценки студента: ' + ${studentFirstName} + ' ' + ${studentLastName}"></h1>
+
+<form th:action="@{/saveMark}" method="post">
+    <input type="hidden" id="studentId" name="studentId" th:value="${studentId}" readonly/><br/><br/>
+
+    <!-- Выбор урока -->
+    <label for="lesson">Select Lesson:</label>
+    <select id="lesson" name="lessonId">
+        <option th:each="lesson : ${lessons}" th:value="${lesson.lessonId}" th:text="${lesson.topic}">
+        </option>
+    </select><br/><br/>
+
+    <!-- Поле для ввода оценки -->
+    <label for="mark">Mark:</label>
+    <input type="number" id="mark" name="mark" min="1" max="10" required/><br/><br/>
+
+    <!-- Выбор статуса посещения -->
+    <label for="attendanceStatus">Attendance Status:</label>
+    <select id="attendanceStatus" name="attendanceStatus">
+        <option th:each="status : ${T(ru.coursework.gradebook.record.attendance.AttendanceStatus).values()}"
+                th:value="${status}" th:text="${status.displayName}"
+                th:selected="${status == currentStatus}">
+        </option>
+    </select><br/><br/>
+
+    <!-- Передача subjectId и professorId обратно на сервер -->
+    <input type="hidden" name="subjectId" th:value="${subjectId}"/>
+    <input type="hidden" name="professorId" th:value="${professorId}"/>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

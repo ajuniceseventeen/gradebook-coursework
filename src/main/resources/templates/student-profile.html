@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница студента</title>
+
+    <style>
+        /* Стили для ссылок */
+        .subject-link {
+            display: block;
+            margin-bottom: 10px;
+            color: #007bff; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+        }
+        .subject-link:hover {
+            text-decoration: underline; /* Подчеркиваем ссылку при наведении */
+        }
+    </style>
+</head>
+<body>
+    <h1>Информация о студенте</h1>
+    <p>ID: <span th:text="${student.user_id}"></span></p>
+    <p>First Name: <span th:text="${student.firstName}"></span></p>
+    <p>Last Name: <span th:text="${student.lastName}"></span></p>
+    <p>Email: <span th:text="${student.email}"></span></p>
+    <p>Study Group: <span th:text="${student.studyGroup.name}"></span></p>
+<!--    <p>Password: <span th:text="${student.password}"></span></p>-->
+    <p>Roles: <span th:text="${student.roles}"></span></p>
+
+
+    <!-- Вывод ссылок на предметы -->
+    <div th:each="subject : ${subjects}">
+        <a th:href="@{'/students/subject/details'}" class="subject-link">
+            <span th:text="${subject.getSubject().getName()}"></span>
+        </a>
+    </div>
+
+
+</body>
+</html>

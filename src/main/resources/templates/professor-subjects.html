@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor Subjects</title>
+</head>
+<body>
+<h1>Subjects Taught by Professor: <span th:text="${professor.firstName}"></span></h1>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Study Group</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="subjectDetails : ${subjectDetailsList}">
+        <td th:text="${subjectDetails.subject.name}"></td>
+        <td th:text="${subjectDetails.studyGroup.name}"></td>
+
+        <td><a th:href="@{/records/view/{id}(id=${subjectDetails.studyGroup.study_group_id},
+         subjectId=${subjectDetails.subject.subject_id != null} ? ${subjectDetails.subject.subject_id} : '',
+         professorId=${subjectDetails.professor.user_id != null} ? ${subjectDetails.professor.user_id} : '')}">
+            View Students
+         </a></td>
+
+    </tr>
+</table>
+</body>
+</html>

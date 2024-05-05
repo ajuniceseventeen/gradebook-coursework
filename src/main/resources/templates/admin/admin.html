@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Management</title>
+
+    <style>
+        /* Header */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8fb68f;
+            padding: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #8fb68f;
+        }
+
+        /* Table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        table th {
+            background-color: #8fb68f;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #e6f7ff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h3 style="color: white">Страница администратора - Управление</h3>
+    <nav>
+        <ul>
+<!--            <li>-->
+<!--                <div>-->
+<!--                    <div> &lt;!&ndash;  Изменить   &ndash;&gt;-->
+<!--                        <a style="background-color: darkslateblue;color: white; padding: 5px; margin-right: 10px"-->
+<!--                           th:href="@{management/hotels}">Управление отелями</a>-->
+<!--                        <a style="background-color: darkslateblue ;color: white; padding: 5px"-->
+<!--                           th:href="@{management/customers}">Управление клиентами</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+
+            <li>
+                <!-- Кнопка для создания студента -->
+                <a style="color: white;" th:href="@{/admin/create-student}">Создать студента</a>
+            </li>
+            <li>
+                <!-- Кнопка для создания преподавателя -->
+                <a style="color: white;" th:href="@{/admin/create-professor}">Создать преподавателя</a>
+            </li>
+
+            <li>
+                <form th:action="@{/logout}" th:method="POST">
+                    <input type="submit" value="Выйти">
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Редактирование</th>
+            <th scope="col">Имя пользователя</th>
+            <th scope="col">Почта</th>
+            <th scope="col">Роли</th>
+            <th scope="col">id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td>
+                <a th:href="${#strings.contains(user.roles, 'STUDENT') ?
+                 '/admin/student-info/' + user.user_id :
+                 '/admin/professor-info/' + user.user_id}">Изменить</a>
+            </td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.roles}"></td>
+            <td th:text="${user.user_id}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

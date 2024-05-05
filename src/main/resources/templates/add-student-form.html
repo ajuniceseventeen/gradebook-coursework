@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Student</title>
+</head>
+<body>
+<h2>Create Student</h2>
+<form action="/admin/create-student" method="post" th:object="${student}">
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+    </div>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required>
+    </div>
+    <div>
+        <label for="email">Введите E-mail: </label>
+        <input type="text" name="username" th:field="*{email}" id="email" required>
+    </div>
+
+    <div>
+        <label for="studyGroup">Study Group:</label>
+        <select id="studyGroup" name="studyGroup" required>
+            <option th:each="group : ${studyGroups}" th:value="${group.study_group_id}" th:text="${group.name}"></option>
+        </select>
+    </div>
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>

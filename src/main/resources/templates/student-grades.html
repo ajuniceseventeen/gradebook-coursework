@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .separator {
+            display: inline-block;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+<h1>Название группы <span th:text="${student_t.getStudyGroup().getName()}"></span></h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Student</th>
+        <!-- Динамически добавляемый столбец для оценок -->
+        <th th:each="lesson : ${lessons}">
+            <span th:text="${lesson.topic}"></span>
+            <span th:text="${lesson.lessonDate}"></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Для каждого студента, отсортированного по фамилии -->
+    <tr th:each="student : ${sortedStudents}">
+        <!-- Выводим фамилию и имя студента -->
+        <td th:text="${student.lastName + ' ' + student.firstName}"></td>
+        <!-- Динамически выводим статус посещаемости и оценку студента по каждому уроку -->
+        <td th:each="lesson : ${lessons}">
+            <!-- Создаем флаг, указывающий на то, найдена ли оценка для данного студента и урока -->
+            <span th:with="foundMark=false">
+                <!-- Итерируем по списку посещаемости -->
+                <span th:each="attendance : ${attendanceList}">
+                    <!-- Проверяем, соответствует ли текущая посещаемость текущему студенту -->
+                    <span th:if="${attendance.student.user_id == student.user_id && attendance.lesson.lessonId == lesson.lessonId}">
+                        <!-- Выводим статус посещаемости -->
+                        <span th:text="${attendance.status.getDisplayName()}"></span>
+                    </span>
+                </span>
+
+                <!-- Разделитель -->
+                <span class="separator">|</span>
+
+                <!-- Итерируем по списку оценок -->
+                <span th:each="mark : ${marks}">
+                    <!-- Проверяем, соответствует ли текущая оценка текущему студенту -->
+                    <span th:if="${mark.student.user_id == student.user_id && mark.lesson.lessonId == lesson.lessonId}">
+                        <!-- Если оценка найдена, устанавливаем флаг в true -->
+                        <span th:with="foundMark=true"></span>
+                        <!-- Выводим оценку -->
+                        <span th:text="${mark.mark}"></span>
+                    </span>
+                </span>
+                <span th:unless="${!foundMark}"></span>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

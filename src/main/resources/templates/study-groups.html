@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Groups</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<!--    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Study Groups</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Grade</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="group : ${studyGroups}">
+            <td th:text="${group.study_group_id}"></td>
+            <td th:text="${group.grade}"></td>
+            <td th:text="${group.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
