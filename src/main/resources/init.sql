@@ -153,9 +153,6 @@ CREATE TABLE IF NOT EXISTS attendances (
     FOREIGN KEY (lesson_id) REFERENCES lessons (lesson_id)
 );
 
--- Добавьте другие индексы и ограничения, если необходимо
 
 
 -- INSERT INTO test_table (name) VALUES ('testkazuha');
-
--- lesson, topic, mark, absent, subject, subject_details, semester, course
